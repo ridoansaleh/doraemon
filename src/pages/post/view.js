@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class PostFormView extends Component {
+export default class PostView extends Component {
     render() {
         return (
             <div>
-                <p>Post Form Page</p>
+                Post Page
             </div>
         )
     }
