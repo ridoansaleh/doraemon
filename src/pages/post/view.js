@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
+import './post.css'
 
-export default class PostView extends Component {
+class PostView extends Component {
     render() {
+        const { state } = this.props.location
         return (
             <div>
-                Post Page
+                <Navbar/>
+                <div className='post-detail-container'>
+                    <h2>
+                        {state.title}
+                    </h2>
+                    <p>by {state.author}</p>
+                    <p>
+                        {state.body}
+                    </p>
+                </div>
             </div>
         )
     }
 }
+
+export default withRouter(PostView)
