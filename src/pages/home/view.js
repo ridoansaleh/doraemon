@@ -29,7 +29,6 @@ class HomeView extends Component {
                 return response.json()
             })
             .then(data => {
-                console.log('data : ', data)
                 this.setState({
                     posts: data
                 })
