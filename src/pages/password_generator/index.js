@@ -1,3 +1,3 @@
-import PasswordGeneratorView from './view'
+import PasswordGeneratorView from './view';
 
-export default PasswordGeneratorView
+export default PasswordGeneratorView;

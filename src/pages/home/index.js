@@ -1,3 +1,3 @@
-import HomeView from './view'
+import HomeView from './view';
 
-export default HomeView
+export default HomeView;
