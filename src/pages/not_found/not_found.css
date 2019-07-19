@@ -1,27 +1,27 @@
 .not-found-container {
-    width: 80%;
-    height: 300px;
-    margin-left: 10%;
-    text-align: center;
+  width: 80%;
+  height: 300px;
+  margin-left: 10%;
+  text-align: center;
 }
 
 .not-found-title {
-    font-size: 80px;
-    margin-bottom: 40px;
+  font-size: 80px;
+  margin-bottom: 40px;
 }
 
 .not-found-content {
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 0px;
-    text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 0px;
+  text-transform: uppercase;
 }
 
 .back-btn {
-    background-color: #FF5733;
-    color: white;
-    width: 200px;
-    height: 40px;
-    border: 1px solid white;
-    border-radius: 10px;
+  background-color: #ff5733;
+  color: white;
+  width: 200px;
+  height: 40px;
+  border: 1px solid white;
+  border-radius: 10px;
 }

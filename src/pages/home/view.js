@@ -1,69 +1,67 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import './home.css'
-import { BACKEND_API_URL } from '../../urls'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
+import './home.css';
+import { BACKEND_API_URL } from '../../urls';
 
 class HomeView extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            posts: []
+    this.state = {
+      posts: [],
+    };
+
+    this.getAllPost = this.getAllPost.bind(this);
+    this.handlePostClicked = this.handlePostClicked.bind(this);
+  }
+
+  componentDidMount() {
+    this.getAllPost();
+  }
+
+  getAllPost() {
+    fetch(BACKEND_API_URL, {
+      mode: 'cors',
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP Error ', response.status);
         }
+        return response.json();
+      })
+      .then(data => {
+        this.setState({
+          posts: data,
+        });
+      })
+      .catch(error => console.log(error));
+  }
 
-        this.getAllPost = this.getAllPost.bind(this)
-        this.handlePostClicked = this.handlePostClicked.bind(this)
-    }
+  handlePostClicked(data) {
+    this.props.history.push({
+      pathname: '/post/' + data.id,
+      state: data,
+    });
+  }
 
-    componentDidMount() {
-        this.getAllPost()
-    }
-
-    getAllPost() {
-        fetch(BACKEND_API_URL, {
-            mode: 'cors'
-        })
-            .then(response => {
-                console.log('response : ', response)
-                if (!response.ok) {
-                    throw new Error('HTTP Error ', response.status)
-                }
-                return response.json()
-            })
-            .then(data => {
-                console.log('dataa : ', data)
-                this.setState({
-                    posts: data
-                })
-            })
-            .catch(error => console.log(error))
-    }
-
-    handlePostClicked(data) {
-        this.props.history.push({
-            pathname: '/post/'+ data.id,
-            state: data
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <Navbar/>
-                <div className="post-container">
-                    {this.state.posts.map((post,i) => {
-                        return (
-                            <div key={i} onClick={() => this.handlePostClicked(post)}>
-                                <h2>{post.title}</h2>
-                                <p>{post.author}</p>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="post-container">
+          {this.state.posts.map((post, i) => {
+            return (
+              <div key={i} onClick={() => this.handlePostClicked(post)}>
+                <h2>{post.title}</h2>
+                <p>{post.author}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default withRouter(HomeView)
+export default withRouter(HomeView);

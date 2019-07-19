@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Home from './pages/home'
-import Post from './pages/post'
-import PostForm from './pages/post_form'
-import PasswordGenerator from './pages/password_generator'
-import NotFound from './pages/not_found'
-import { HOME_PATH, POST_PATH, POST_FORM_PATH, PASSWORD_GENERATOR_PATH } from './urls'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Post from './pages/post';
+import PostForm from './pages/post_form';
+import PasswordGenerator from './pages/password_generator';
+import NotFound from './pages/not_found';
+import { HOME_PATH, POST_PATH, POST_FORM_PATH, PASSWORD_GENERATOR_PATH } from './urls';
 
 export const App = () => (
   <BrowserRouter>
@@ -20,13 +20,10 @@ export const App = () => (
       </Switch>
     </div>
   </BrowserRouter>
-)
+);
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app')
-)
+ReactDOM.render(<App />, document.getElementById('app'));
 
 if (process.env.NODE_ENV === 'development') {
-  module.hot.accept()
+  module.hot.accept();
 }

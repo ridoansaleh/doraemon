@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const TerserJSPlugin = require('terser-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const MODE_VAL = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 const DEVTOOL_VAL = process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map'
@@ -84,9 +82,6 @@ const config = {
   resolve: {
     extensions: ['*', '.js']
   },
-  // optimization: {
-  //   minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-  // },
   plugins: PLUGINS_VAL,
   output: {
     path: path.resolve(__dirname, 'dist'),

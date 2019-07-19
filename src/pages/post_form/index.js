@@ -1,3 +1,3 @@
-import PostFormView from './view'
+import PostFormView from './view';
 
-export default PostFormView
+export default PostFormView;
