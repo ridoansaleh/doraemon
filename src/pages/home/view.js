@@ -20,7 +20,7 @@ class HomeView extends Component {
     }
 
     getAllPost() {
-        fetch('http://localhost:3000/posts')
+        fetch('http://localhost:5000/posts')
             .then(response => {
                 console.log('response : ', response)
                 if (!response.ok) {
