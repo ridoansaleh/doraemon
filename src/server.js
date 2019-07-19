@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const port = process.env.PORT || 3000;
-const data = require('./data.json')
 
 const app = express();
 
@@ -17,7 +16,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/posts', (req, res) => {
-  res.status(200).send(data.posts)
+  let data = ''
+  fs.readFile(path.resolve(__dirname, 'data.json'), (err, resp) => {
+    if (err) return console.log('Error::reading data from data.json file ',err);
+    data = JSON.parse(resp)
+    res.send(data.posts)
+  });
 });
 
 app.post('/posts', (req, res) => {
