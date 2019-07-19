@@ -6,7 +6,7 @@
 
 2. `yarn install` or `npm install`
 
-3. `yarn start`
+3. `yarn run start:dev`
 
 Wait, your default browser will open up automatically
 
