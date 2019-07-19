@@ -20,7 +20,7 @@ class HomeView extends Component {
     }
 
     getAllPost() {
-        fetch('http://localhost:5000/posts')
+        fetch('http://localhost:4000/posts', { mode: 'cors'  })
             .then(response => {
                 console.log('response : ', response)
                 if (!response.ok) {
@@ -29,6 +29,7 @@ class HomeView extends Component {
                 return response.json()
             })
             .then(data => {
+                console.log('dataa : ', data)
                 this.setState({
                     posts: data
                 })
