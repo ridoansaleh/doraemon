@@ -8,9 +8,7 @@
     "dev-app": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
     "start:dev": "npm-run-all --parallel database-local dev-app",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "database-prod": "json-server --watch --port 5000 dist/data.json",
-    "run-app": "node dist/server.js",
-    "start": "npm-run-all --parallel database-prod run-app",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

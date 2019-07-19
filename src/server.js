@@ -41,7 +41,7 @@ app.post('/posts', (req, res) => {
   fs.readFile(path.resolve(__dirname, 'data.json'), (err, resp) => {
     if (err) return console.log(err);
     console.log('bef : ', resp)
-    var json = JSON.parse(resp)
+    let json = JSON.parse(resp)
     console.log('__json : ', json.posts)
     json.posts.push(req.body)
 
