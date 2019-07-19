@@ -90,7 +90,10 @@ class PostFormView extends Component {
                 })
                 .then(data => {
                     this.setState({
-                        isSubmissionSucceed: true
+                        isSubmissionSucceed: true,
+                        title: '',
+                        content: '',
+                        author: ''
                     })
                 })
                 .catch(error => console.log(error))

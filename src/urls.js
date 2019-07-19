@@ -6,7 +6,7 @@ const PASSWORD_GENERATOR_PATH = HOME_PATH + 'password-generator'
 let BACKEND_API_URL = 'http://localhost:5000/posts'
 
 if (process.env.NODE_ENV === 'production') {
-    BACKEND_API_URL = 'https://doraemon-rido.herokuapp.com/posts'
+    BACKEND_API_URL = '/posts'
 }
 
 export {
