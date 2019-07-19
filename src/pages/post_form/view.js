@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from '../../components/Navbar'
 import './post_form.css'
-import postsData from '../../data.json'
 
 export default class PostFormView extends Component {
     constructor(props){
@@ -18,6 +17,7 @@ export default class PostFormView extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.generateId = this.generateId.bind(this)
+        this.getAllPosts = this.getAllPosts.bind(this)
     }
 
     handleChange(event) {
@@ -37,12 +37,36 @@ export default class PostFormView extends Component {
         return id
     }
 
-    handleSubmit(event) {
+    async getAllPosts() {
+        let res =  await fetch('http://localhost:5000/posts')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP Error ', response.status)
+                }
+                return response.json()
+            })
+            .then(data => {
+                return data
+            })
+            .catch(error => console.log(error))
+        return res
+    }
+
+    async handleSubmit(event) {
         event.preventDefault();
+
+        let postsData = require('../../data.json')
+
+        if (process.env.NODE_ENV === 'production') {
+            postsData = {
+                posts: await this.getAllPosts()
+            }
+        }
         const { title, content, author } = this.state
+        
         if (title && content && author) {
             let id = this.generateId(postsData)
-            fetch('http://localhost:3000/posts', {
+            fetch('http://localhost:5000/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

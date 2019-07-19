@@ -11,10 +11,54 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MODE_VAL = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 const DEVTOOL_VAL = process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map'
 
+let PLUGINS_VAL = []
+
+if (process.env.NODE_ENV === 'development') {
+  PLUGINS_VAL = [
+    new WriteFilePlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename:'[id].css',
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
+} else {
+  PLUGINS_VAL = [
+    new WriteFilePlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/data.json',
+        to: 'data.json',
+        toType: 'file'
+      }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: './src/server.js',
+        to: 'server.js',
+        toType: 'file'
+      }
+    ])
+  ]
+}
+
+
 const config = {
   mode: MODE_VAL,
   devtool: DEVTOOL_VAL,
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   module: {
     rules: [
       {
@@ -43,32 +87,7 @@ const config = {
   // optimization: {
   //   minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   // },
-  plugins: [
-    new WriteFilePlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: process.env.NODE_ENV === 'development' ? '[name].css' : '[name].[hash].css',
-      chunkFilename: process.env.NODE_ENV === 'development' ? '[id].css' : '[id].[hash].css',
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    process.env.NODE_ENV === 'production' && new CopyWebpackPlugin([
-      {
-        from: './src/data.json',
-        to: 'data.json',
-        toType: 'file'
-      }
-    ]),
-    process.env.NODE_ENV === 'production' && new CopyWebpackPlugin([
-      {
-        from: './src/server.js',
-        to: 'server.js',
-        toType: 'file'
-      }
-    ])
-  ],
+  plugins: PLUGINS_VAL,
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
