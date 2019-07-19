@@ -35,6 +35,12 @@
       "author": "Ridoan",
       "title": "Are you Ready ?",
       "body": "Some Text"
+    },
+    {
+      "id": 7,
+      "author": "Popi",
+      "title": "You Know This",
+      "body": "Some short text"
     }
   ]
 }
