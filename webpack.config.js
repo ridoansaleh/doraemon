@@ -4,13 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const TerserJSPlugin = require('terser-webpack-plugin');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const MODE_VAL = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 const DEVTOOL_VAL = process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map'
-
-console.log('process : ', process.env)
 
 const config = {
   mode: MODE_VAL,
@@ -55,6 +54,20 @@ const config = {
       chunkFilename: process.env.NODE_ENV === 'development' ? '[id].css' : '[id].[hash].css',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    process.env.NODE_ENV === 'production' && new CopyWebpackPlugin([
+      {
+        from: './src/data.json',
+        to: 'data.json',
+        toType: 'file'
+      }
+    ]),
+    process.env.NODE_ENV === 'production' && new CopyWebpackPlugin([
+      {
+        from: './src/server.js',
+        to: 'server.js',
+        toType: 'file'
+      }
+    ])
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
