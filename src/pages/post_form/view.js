@@ -83,7 +83,7 @@ export default class PostFormView extends Component {
                         <label>
                             <div className="title-text">Title</div>
                             <br/>
-                            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+                            <input type="text" className='post-form-field' name="title" value={this.state.title} onChange={this.handleChange} />
                         </label>
                         <br/>
                         <label>
@@ -95,10 +95,10 @@ export default class PostFormView extends Component {
                         <label>
                             <div className="title-text">Author</div>
                             <br/>
-                            <input type="text" name="author" value={this.state.author} onChange={this.handleChange} />
+                            <input type="text" className='post-form-field' name="author" value={this.state.author} onChange={this.handleChange} />
                         </label>
                         <br/>
-                        <input type="submit" value="Submit" />
+                        <input type="submit" className='post-form-btn' value="Submit" />
                         {this.state.isSubmissionSucceed &&
                             (
                                 <div className='success-box'>
