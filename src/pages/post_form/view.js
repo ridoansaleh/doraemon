@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Navbar from '../../components/Navbar'
 import './post_form.css'
+import { BACKEND_API_URL } from '../../urls'
 
-export default class PostFormView extends Component {
+class PostFormView extends Component {
     constructor(props){
         super(props)
 
@@ -38,7 +39,9 @@ export default class PostFormView extends Component {
     }
 
     async getAllPosts() {
-        let res =  await fetch('http://localhost:5000/posts')
+        let res =  await fetch(BACKEND_API_URL, {
+            mode: 'cors'
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('HTTP Error ', response.status)
@@ -66,11 +69,12 @@ export default class PostFormView extends Component {
         
         if (title && content && author) {
             let id = this.generateId(postsData)
-            fetch('http://localhost:5000/posts', {
+            fetch(BACKEND_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                mode: 'cors',
                 body: JSON.stringify({
                     id,
                     author,
@@ -143,3 +147,5 @@ export default class PostFormView extends Component {
         )
     }
 }
+
+export default PostFormView

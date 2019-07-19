@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import './home.css'
+import { BACKEND_API_URL } from '../../urls'
 
 class HomeView extends Component {
     constructor(props) {
@@ -20,7 +21,9 @@ class HomeView extends Component {
     }
 
     getAllPost() {
-        fetch('http://localhost:5000/posts')
+        fetch(BACKEND_API_URL, {
+            mode: 'cors'
+        })
             .then(response => {
                 console.log('response : ', response)
                 if (!response.ok) {
@@ -29,6 +32,7 @@ class HomeView extends Component {
                 return response.json()
             })
             .then(data => {
+                console.log('dataa : ', data)
                 this.setState({
                     posts: data
                 })
