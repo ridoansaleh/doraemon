@@ -16,7 +16,7 @@ Wait, your default browser will open up automatically
 
 2. Pick your host provider
 
-Actually, i prefer Heroku to deploy my React app. Here is a link to the Doraemon app i have deployed.
+Actually, i prefer Heroku to deploy my React app. Here is a [link](https://doraemon-rido.herokuapp.com) to Doraemon app i have deployed.
 
 # Features
 
@@ -31,3 +31,5 @@ Actually, i prefer Heroku to deploy my React app. Here is a link to the Doraemon
 5. Express Server (Production)
 
 6. Prettier (Code Formatter)
+
+7. Desktop Only (Not Implement Responsive CSS)
