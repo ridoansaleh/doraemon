@@ -2,15 +2,15 @@
 
 ## Run Local
 
-1. `git clone git@github.com:ridoansaleh/doraemon.git`
+1. `git clone git@github.com:ridoansaleh/doraemon.git` or download it manually
 
-2. `yarn install` or `npm install`
+2. `yarn` or `yarn install` or `npm install`
 
 3. `yarn run start:dev`
 
 Wait, your default browser will open up automatically
 
-# Deploy to Server
+## Deploy to Server
 
 1. Build your assets `yarn run build`
 
@@ -18,18 +18,16 @@ Wait, your default browser will open up automatically
 
 Actually, i prefer Heroku to deploy my React app. Here is a [link](https://doraemon-rido.herokuapp.com) to Doraemon app i have deployed.
 
-# Features
+## Features
 
 1. Custom Webpack Config
 
 2. HMR (Hot Module Replacement)
 
-3. CSS Modules
+3. Fake API (JSON Server)
 
-4. Fake API (JSON Server)
+4. Express Server (Production)
 
-5. Express Server (Production)
+5. Prettier (Code Formatter)
 
-6. Prettier (Code Formatter)
-
-7. Desktop Only (Not Implement Responsive CSS)
+6. Desktop Only (Not Implement Responsive CSS)
